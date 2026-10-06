@@ -21,7 +21,8 @@ class BarangSeeder extends Seeder
         ];
 
         foreach ($produk as $p) {
-            Barang::create($p);   // mass assignment — dijaga oleh #[Fillable]
+            // Isi lewat mass assignment (dijaga atribut #[Fillable]).
+            Barang::create($p);
         }
     }
 }

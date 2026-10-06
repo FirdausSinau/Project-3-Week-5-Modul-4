@@ -22,7 +22,8 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();   // tiket baru (anti session fixation)
+            // Tiket baru (anti session fixation).
+            $request->session()->regenerate();
 
             // kembali ke halaman yang tadi dituju; kalau tidak ada -> katalog
             return redirect()->intended(route('toko.index'));

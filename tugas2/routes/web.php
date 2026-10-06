@@ -13,7 +13,8 @@ Route::get('/keranjang', [TokoController::class, 'keranjang'])->name('keranjang.
 Route::post('/keranjang/tambah/{id}', [TokoController::class, 'tambah'])->name('keranjang.tambah');
 
 Route::post('/keranjang/ubah/{id}/{delta}', [TokoController::class, 'ubah'])
-    ->whereIn('delta', ['1', '-1'])          // hanya izinkan +1 / -1
+    // Batasi delta hanya +1 atau -1.
+    ->whereIn('delta', ['1', '-1'])
     ->name('keranjang.ubah');
 
 Route::post('/keranjang/hapus/{id}', [TokoController::class, 'hapus'])->name('keranjang.hapus');

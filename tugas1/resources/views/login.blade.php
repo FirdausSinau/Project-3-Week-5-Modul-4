@@ -28,7 +28,8 @@
         @enderror
 
         <form method="POST" action="{{ route('login') }}">
-            @csrf {{-- token CSRF: wajib untuk semua form POST --}}
+            {{-- Token CSRF: wajib untuk semua form POST. --}}
+            @csrf
 
             <label for="username">Username</label>
             <input type="text" id="username" name="username" value="{{ old('username') }}" required autofocus>

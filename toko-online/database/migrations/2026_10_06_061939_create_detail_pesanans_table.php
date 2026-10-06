@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('order_details', function (Blueprint $table) {
             $table->string('id_order', 15);
             $table->string('id_barang', 10);
-            $table->decimal('harga_satuan', 12, 2);   // ARSIP harga saat dibeli
+            // Arsip harga saat dibeli.
+            $table->decimal('harga_satuan', 12, 2);
             $table->integer('jumlah_beli');
 
             // PK gabungan: satu barang hanya boleh muncul sekali per pesanan

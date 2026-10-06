@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-// Catatan: PK aslinya gabungan (id_order + id_barang). Eloquent tidak mendukung
-// composite key, jadi kita deklarasikan satu kunci "wakil" — model ini diakses
-// lewat relasi & create(), bukan lewat find() pada kombinasi PK.
+// PK gabungan; model ini diakses lewat relasi, bukan find().
 #[Table('order_details', key: 'id_order', keyType: 'string', incrementing: false)]
 #[WithoutTimestamps]
 #[Fillable(['id_order', 'id_barang', 'harga_satuan', 'jumlah_beli'])]

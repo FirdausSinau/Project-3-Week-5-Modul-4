@@ -9,9 +9,10 @@ class TokoController extends Controller
     // GET / — halaman daftar barang
     public function index()
     {
-        $barang     = Barang::all();                // SELECT * FROM barang
-        $keranjang  = session('keranjang', []);     // isi keranjang (id => jumlah)
-        $jumlahItem = array_sum($keranjang);        // total kuantitas untuk badge
+        // Ambil barang dan isi keranjang dari session.
+        $barang     = Barang::all();
+        $keranjang  = session('keranjang', []);
+        $jumlahItem = array_sum($keranjang);
 
         return view('index', compact('barang', 'keranjang', 'jumlahItem'));
     }
@@ -19,11 +20,13 @@ class TokoController extends Controller
     // POST /keranjang/tambah/{id} — tambah 1 produk ke keranjang
     public function tambah($id)
     {
-        $barang = Barang::findOrFail($id);          // 404 jika id tidak ada
+        // 404 otomatis jika produk tidak ada.
+        $barang = Barang::findOrFail($id);
 
-        $keranjang = session('keranjang', []);        // 1. baca
-        $keranjang[$id] = ($keranjang[$id] ?? 0) + 1; // 2. jumlah bertambah jika sudah ada
-        session(['keranjang' => $keranjang]);         // 3. simpan
+        // Tambah satu ke jumlah produk di session.
+        $keranjang = session('keranjang', []);
+        $keranjang[$id] = ($keranjang[$id] ?? 0) + 1;
+        session(['keranjang' => $keranjang]);
 
         return redirect()->route('toko.index')
             ->with('sukses', $barang->nama . ' ditambahkan ke keranjang.');
@@ -35,14 +38,15 @@ class TokoController extends Controller
         $keranjang  = session('keranjang', []);
         $jumlahItem = array_sum($keranjang);
 
-        // Session hanya menyimpan id + jumlah. Nama & harga diambil segar dari database.
+        // Nama dan harga selalu diambil dari database.
         $items = [];
         $total = 0;
 
         foreach ($keranjang as $id => $jumlah) {
             $barang = Barang::find($id);
             if (! $barang) {
-                continue; // jaga-jaga: produk sudah tidak ada di katalog
+                // Lewati produk yang sudah tidak ada di katalog.
+                continue;
             }
 
             $subtotal = $barang->harga * $jumlah;
@@ -65,7 +69,8 @@ class TokoController extends Controller
         $jumlahBaru = (int) $keranjang[$id] + (int) $delta;
 
         if ($jumlahBaru <= 0) {
-            unset($keranjang[$id]);      // mencapai 0 -> entri dihapus otomatis
+            // Jumlah 0 berarti entri dihapus.
+            unset($keranjang[$id]);
         } else {
             $keranjang[$id] = $jumlahBaru;
         }

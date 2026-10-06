@@ -74,7 +74,8 @@ class TokoController extends Controller
         }
 
         if ($jumlahBaru <= 0) {
-            unset($keranjang[$id]);    // mencapai 0 -> dihapus otomatis
+            // Jumlah 0 berarti entri dihapus.
+            unset($keranjang[$id]);
         } else {
             $keranjang[$id] = $jumlahBaru;
         }

@@ -16,23 +16,21 @@ class AuthController extends Controller
     // POST /login — proses percobaan login
     public function login(Request $request)
     {
-        // 1. Validasi input: wajib diisi, harus berupa string
+        // Validasi input wajib diisi dan berupa string.
         $credentials = $request->validate([
             'username' => ['required', 'string'],
             'password' => ['required', 'string'],
         ]);
 
-        // 2. Auth::attempt: cari user by username -> Hash::check password
-        //    -> jika cocok, SIMPAN status login ke session (di server)
+        // Cek kredensial; jika cocok, status login disimpan ke session.
         if (Auth::attempt($credentials)) {
-            // 3. Ganti ID session yang baru (cegah session fixation)
+            // Ganti ID session yang baru (cegah session fixation).
             $request->session()->regenerate();
 
             return redirect()->intended('/dashboard');
         }
 
-        // 4. Gagal: kembali ke form, pesan umum (tidak menyebut mana yang salah),
-        //    dan isi ulang kolom username supaya user tidak mengetik lagi
+        // Gagal: kembali ke form dengan pesan umum.
         return back()->withErrors([
             'login' => 'Username atau password salah.',
         ])->onlyInput('username');
@@ -47,9 +45,12 @@ class AuthController extends Controller
     // POST /logout — keluar dari aplikasi
     public function logout(Request $request)
     {
-        Auth::logout();                            // hapus status login dari session
-        $request->session()->invalidate();         // buang seluruh data session lama di server
-        $request->session()->regenerateToken();    // ganti token CSRF agar token lama tidak bisa dipakai
+        // Hapus status login dari session.
+        Auth::logout();
+        // Buang seluruh data session lama.
+        $request->session()->invalidate();
+        // Ganti token CSRF.
+        $request->session()->regenerateToken();
 
         return redirect('/login');
     }

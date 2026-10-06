@@ -53,7 +53,8 @@
             <div class="flash-err">{{ session('error') }}</div>
         @endif
 
-        @yield('konten')   {{-- 🕳️ lubang: isi unik tiap halaman --}}
+        {{-- Isi unik tiap halaman disuntikkan di sini. --}}
+        @yield('konten')
     </div>
 </body>
 </html>

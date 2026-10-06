@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->string('id_order', 15)->primary();    // mis. ORD-XXXXXX
+            // Kode pesanan, contoh: ORD-XXXXXX.
+            $table->string('id_order', 15)->primary();
             $table->string('id_user', 15);
             $table->dateTime('tanggal_order');
             $table->decimal('total_harga', 12, 2);

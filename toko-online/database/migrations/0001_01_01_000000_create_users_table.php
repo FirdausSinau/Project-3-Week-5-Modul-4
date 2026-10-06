@@ -29,7 +29,8 @@ return new class extends Migration
 
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('user_id', 15)->nullable()->index(); // disesuaikan: PK users bertipe teks!
+            // Kolom user_id disesuaikan karena PK users berupa teks.
+            $table->string('user_id', 15)->nullable()->index();
             $table->string('ip_address', 45)->nullable();
             $table->text('user_agent')->nullable();
             $table->longText('payload');

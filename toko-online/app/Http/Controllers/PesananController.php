@@ -9,9 +9,10 @@ class PesananController extends Controller
     // GET /riwayat — daftar pesanan milik user yang sedang login
     public function index()
     {
-        $pesanan = auth()->user()->pesanans()     // relasi -> otomatis WHERE id_user = user aktif
-            ->with('details')                     // eager loading (hindari N+1)
-            ->latest('tanggal_order')             // terbaru di atas
+        // Pesanan milik user aktif (terbaru dulu) beserta detailnya.
+        $pesanan = auth()->user()->pesanans()
+            ->with('details')
+            ->latest('tanggal_order')
             ->get();
 
         return view('riwayat.index', compact('pesanan'));

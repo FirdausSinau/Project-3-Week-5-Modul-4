@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
                 'nama_lengkap' => 'Budi Santoso',
                 'email'        => 'budi@example.com',
                 'username'     => 'budi',
-                'password'     => 'rahasia123',   // otomatis di-hash oleh cast 'hashed'
+                // Password mentah, otomatis di-hash oleh cast.
+                'password'     => 'rahasia123',
                 'no_hp'        => '081234567890',
                 'alamat'       => 'Jl. Merdeka No. 10, Bandung',
             ],

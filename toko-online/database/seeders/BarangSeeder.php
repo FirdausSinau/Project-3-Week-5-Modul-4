@@ -8,8 +8,7 @@ use Illuminate\Database\Seeder;
 class BarangSeeder extends Seeder
 {
     /**
-     * 10 produk toko (sesuai ketentuan minimal 10 barang).
-     * Satu produk sengaja berstok 0 untuk uji "stok 0 tidak dapat dibeli".
+     * Isi 10 produk; satu produk sengaja berstok 0 untuk uji.
      */
     public function run(): void
     {

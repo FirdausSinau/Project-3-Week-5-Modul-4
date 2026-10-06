@@ -13,14 +13,15 @@
 1. Tugas 1 — Login dengan Password Terenkripsi
 2. Tugas 2 — Keranjang Belanja Tanpa Login
 3. PR — Program Toko Online
-4. Lampiran — Akun Uji
+4. Refleksi
+5. Lampiran — Akun Uji
 
 ---
 
 # 1. TUGAS 1 — Login dengan Password Terenkripsi
 
 ## Ringkasan Implementasi
-Aplikasi dibuat dengan **Laravel 13 + MySQL** (folder `tugas1/`), tanpa starter kit — seluruh logika login ditulis sendiri.
+Aplikasi dibuat dengan **Laravel 13 + MySQL** (folder `tugas-1-login/`), tanpa starter kit — seluruh logika login ditulis sendiri.
 
 - **Tabel `users`** (`id`, `username` unik, `password`, `nama_lengkap`, timestamps) dibuat via **migration**.
 - **Seeder** mengisi 2 user; password ditulis mentah di seeder dan otomatis di-hash oleh cast `'password' => 'hashed'` pada model `User`.
@@ -97,7 +98,7 @@ Tiket sesinya berbeda, sehingga server mengenali sesi baru dan **keranjang tampi
 
 # 3. PR — Program Toko Online
 
-Aplikasi **toko online berbasis Laravel 13 + MySQL** (folder `toko-online/`) dengan fitur lengkap sesuai ketentuan.
+Aplikasi **toko online berbasis Laravel 13 + MySQL** (folder `tugas-toko-online/`) dengan fitur lengkap sesuai ketentuan.
 
 ## Fitur dan Alur
 
@@ -137,7 +138,25 @@ Aplikasi **toko online berbasis Laravel 13 + MySQL** (folder `toko-online/`) den
 
 ---
 
-# 4. Lampiran — Akun Uji
+# 4. Refleksi
+
+Pengerjaan Modul 4 membuat saya memahami secara praktik mengapa web membutuhkan penyimpanan data. HTTP yang **stateless** menuntut adanya mekanisme seperti cookies, session, dan Local Storage — dan pilihan terbaik ditentukan oleh **siapa yang perlu membaca dan mempercayai data** tersebut.
+
+Hal-hal utama yang saya pelajari:
+
+- **Cookies** praktis tetapi mudah dilihat dan diubah pengguna; cocok untuk preferensi kecil yang perlu dibaca server.
+- **Session** menyimpan data di server dan browser hanya membawa tiket acak; sangat cocok untuk data sensitif seperti status login dan keranjang.
+- **Local Storage** berkapasitas besar dan awet, tetapi hanya untuk sisi klien dan tidak dapat dibaca server.
+
+Di sisi keamanan, saya mempraktikkan **hashing password** (bcrypt + salt + cost), token **CSRF** pada semua aksi POST, **regenerasi ID sesi** setelah login untuk mencegah session fixation, serta validasi dan perhitungan di sisi server.
+
+Kesulitan yang saya temui sekaligus pelajaran: error *"Unknown column 'updated_at'"* karena model tidak sesuai skema (teratasi dengan memahami konvensi Eloquent), logout yang terkena **419** karena token CSRF ikut diganti saat login, perbedaan nama cookie `laravel-session` pada Laravel 13, serta penerapan **primary key teks** dan **PK gabungan**. Semuanya saya atasi dengan membaca pesan error dan menelusuri source code framework.
+
+Pada PR, saya belajar memisahkan logika bisnis ke **service**, memakai **transaksi database** agar checkout konsisten (terbukti rollback saat stok tidak cukup), **relasi Eloquent** dengan *eager loading*, serta otorisasi agar pesanan tidak dapat dilihat pengguna lain. Kesimpulannya: data di sisi klien selalu dapat diubah pengguna, sehingga **server harus menjadi sumber kebenaran** — terutama untuk harga dan stok.
+
+---
+
+# 5. Lampiran — Akun Uji
 
 | Username | Password | Nama |
 |---|---|---|

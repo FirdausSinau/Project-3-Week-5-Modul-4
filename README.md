@@ -9,9 +9,9 @@
 
 | Folder | Tugas | Poin utama |
 |---|---|---|
-| `tugas1/` | Tugas 1 — Login dengan Password Terenkripsi | Laravel 13 + MySQL; password ter-hash (bcrypt); `Auth::attempt`; middleware `auth`/`guest`; session regeneration |
-| `tugas2/` | Tugas 2 — Keranjang Belanja Tanpa Login | Mekanisme **session** (data di server); badge jumlah; tombol + / − / hapus / kosongkan; batas stok |
-| `toko-online/` | PR — Program Toko Online | Login wajib untuk membeli; katalog 10 barang + gambar; keranjang session; checkout transaksional (`CheckoutService` + `DB::transaction`); arsip `harga_satuan`; riwayat pesanan |
+| `tugas-1-login/` | Tugas 1 — Login dengan Password Terenkripsi | Laravel 13 + MySQL; password ter-hash (bcrypt); `Auth::attempt`; middleware `auth`/`guest`; session regeneration |
+| `tugas-2-keranjang/` | Tugas 2 — Keranjang Belanja Tanpa Login | Mekanisme **session** (data di server); badge jumlah; tombol + / − / hapus / kosongkan; batas stok |
+| `tugas-toko-online/` | PR — Program Toko Online | Login wajib untuk membeli; katalog 10 barang + gambar; keranjang session; checkout transaksional (`CheckoutService` + `DB::transaction`); arsip `harga_satuan`; riwayat pesanan |
 
 ## Teknologi
 - Laravel 13 (PHP 8.4), MySQL 8, Blade

@@ -1,0 +1,12 @@
+# Materi kuliah: jangan dipublikasikan
+/Modul/
+
+# PDF (materi/tugas)
+*.pdf
+
+# Sampah sistem
+Thumbs.db
+.DS_Store
+
+# SQLite sisa bawaan skeleton (proyek ini memakai MySQL)
+*.sqlite

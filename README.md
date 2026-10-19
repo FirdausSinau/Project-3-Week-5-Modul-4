@@ -11,19 +11,6 @@
 | `tugas-toko-online/` | PR — Toko online (login, katalog, keranjang, checkout, riwayat) |
 | `stateless-shop/` | Modul 4 Bagian 2 — Stateless Shopping Cart (state via payload request) |
 
-## Menjalankan
-
-```bash
-cd nama-folder
-composer install
-copy .env.example .env    # Windows
-php artisan key:generate
-php artisan migrate --seed
-php artisan serve
-```
-
-`stateless-shop` tidak memerlukan database (katalog berupa array): cukup `composer install`, `php artisan key:generate`, lalu `php artisan serve`.
-
 ## Akun Demo (tugas-1-login)
 
 | Username | Password | Role |

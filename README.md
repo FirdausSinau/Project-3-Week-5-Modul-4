@@ -1,33 +1,34 @@
-# Project 3 — Week 5 — Modul 4
+# Project 3 — Modul 4 & 5
 
-**Penyimpanan Data pada Web: Cookies, Session, dan Local Storage**
-
-- **Nama:** Ananda Firdaus
-- **NIM:** 251511003
+**Nama:** Ananda Firdaus · **NIM:** 251511003
 
 ## Isi Repositori
 
-| Folder | Tugas | Poin utama |
-|---|---|---|
-| `tugas-1-login/` | Tugas 1 — Login dengan Password Terenkripsi | Laravel 13 + MySQL; password ter-hash (bcrypt); `Auth::attempt`; middleware `auth`/`guest`; session regeneration |
-| `tugas-2-keranjang/` | Tugas 2 — Keranjang Belanja Tanpa Login | Mekanisme **session** (data di server); badge jumlah; tombol + / − / hapus / kosongkan; batas stok |
-| `tugas-toko-online/` | PR — Program Toko Online | Login wajib untuk membeli; katalog 10 barang + gambar; keranjang session; checkout transaksional (`CheckoutService` + `DB::transaction`); arsip `harga_satuan`; riwayat pesanan |
-| `stateless-shop/` | Modul 4 Bagian 2 — Stateless Shopping Cart | Keranjang **tanpa** session/cookie; state dikirim melalui payload request; server hanya menghitung item, subtotal, dan total |
+| Folder | Isi |
+|---|---|
+| `tugas-1-login/` | Tugas 1 — Login Laravel; dilanjutkan Modul 5 (Role Management: Gate, Form Request, Service, Observer, simulasi cart stateless) |
+| `tugas-2-keranjang/` | Tugas 2 — Keranjang belanja tanpa login (session) |
+| `tugas-toko-online/` | PR — Toko online (login, katalog, keranjang, checkout, riwayat) |
+| `stateless-shop/` | Modul 4 Bagian 2 — Stateless Shopping Cart (state via payload request) |
 
-## Teknologi
-- Laravel 13 (PHP 8.4), MySQL 8, Blade
+## Menjalankan
 
-## Cara Menjalankan (dilakukan di tiap folder proyek)
 ```bash
+cd nama-folder
 composer install
-copy .env.example .env     # Windows (sesuaikan DB_* dengan MySQL setempat)
+copy .env.example .env    # Windows
 php artisan key:generate
 php artisan migrate --seed
 php artisan serve
 ```
 
-## Akun Uji
-| Username | Password | Nama |
+`stateless-shop` tidak memerlukan database (katalog berupa array): cukup `composer install`, `php artisan key:generate`, lalu `php artisan serve`.
+
+## Akun Demo (tugas-1-login)
+
+| Username | Password | Role |
 |---|---|---|
-| `budi` | `rahasia123` | Budi Santoso |
-| `siti` | `rahasia456` | Siti Aminah |
+| `admin` | `admin123` | admin |
+| `staff` | `staff123` | staff |
+| `budi` | `rahasia123` | customer |
+| `siti` | `rahasia456` | customer |

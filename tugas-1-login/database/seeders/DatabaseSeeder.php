@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'username'     => 'budi',
-            // Password mentah, otomatis di-hash oleh cast.
+            // auto di hash ini nya
             'password'     => 'rahasia123',
             'nama_lengkap' => 'Budi Santoso',
         ]);
@@ -27,5 +27,7 @@ class DatabaseSeeder extends Seeder
             'password'     => 'rahasia456',
             'nama_lengkap' => 'Siti Aminah',
         ]);
+
+        $this->call(RoleDemoSeeder::class);
     }
 }

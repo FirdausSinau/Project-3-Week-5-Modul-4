@@ -10,3 +10,11 @@ Thumbs.db
 
 # SQLite sisa bawaan skeleton (proyek ini memakai MySQL)
 *.sqlite
+
+# File laporan (hanya di lokal, tidak untuk repo)
+251511003_Ananda Firdaus_Laporan_Modul4.docx
+251511003_Ananda Firdaus_Laporan_Modul4.md
+
+# Postman workspace lokal (bukan source code)
+.postman/
+postman/

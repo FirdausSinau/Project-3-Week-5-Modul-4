@@ -31,6 +31,11 @@
         <p class="hello">Selamat datang, <strong>{{ auth()->user()->nama_lengkap }}</strong>!</p>
         <p class="muted">Halaman ini hanya bisa dibuka setelah login.</p>
         <p>Username: <strong>{{ auth()->user()->username }}</strong></p>
+        <p>Role: <strong>{{ auth()->user()->role }}</strong></p>
+
+        @if (auth()->user()->role === 'admin')
+            <p><a href="{{ route('admin.users.index') }}">Kelola Role Pengguna</a></p>
+        @endif
     </main>
 </body>
 </html>
